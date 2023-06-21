@@ -1,5 +1,7 @@
 #!/bin/sh
 
+### Place this file in /bin directory or wherever you want
+
 ### initial boot script
 
 # get IP address of int em1 and the gateway IP
