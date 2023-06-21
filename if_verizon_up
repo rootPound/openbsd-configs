@@ -1,0 +1,22 @@
+#!/bin/sh
+
+### verizon up script
+
+x=$(route -n show -inet | grep -o default | wc -l)
+
+until [ $x -le 0 ];
+do
+    route delete -mpath default
+    let "x-=1"
+done
+
+ifconfig em2 down
+ifconfig em2 up
+dhclient em2
+sleep 5
+
+pfctl -k 0.0.0.0/0
+
+ifconfig em1 down
+ifconfig em1 up
+dhclient em1 
