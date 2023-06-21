@@ -1,0 +1,13 @@
+#!/bin/sh
+
+### spectrum up script
+
+em2gw="$(route -n show -inet | grep default | grep em2 | awk '{print $2}')"
+
+route delete -mpath default $em2gw 
+ifconfig em2 down
+ifconfig em1 down
+ifconfig em1 up
+dhclient em1
+sleep 5
+pfctl -k 0.0.0.0/0
