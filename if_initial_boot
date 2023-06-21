@@ -1,0 +1,18 @@
+#!/bin/sh
+
+### initial boot script
+
+# get IP address of int em1 and the gateway IP
+
+em1="$(ifconfig em1 | awk '/inet/ {print $2}')"
+em1gw="$(route -n show -inet | grep default | grep em1 | awk '{print $2}')"
+
+# remove lines from hosts file that may exists already
+
+sed -i '/em1/d' /etc/hosts
+sed -i '/em1-gw/d' /etc/hosts
+
+# add new ip's in /etc/hosts
+
+echo "$em1	em1" >> /etc/hosts
+echo "$em1gw	em1-gw" >> /etc/hosts
