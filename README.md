@@ -1,5 +1,7 @@
 # openbsd-configs
 
+This is a work in progress....
+
 This is mainly configs for running a PF router/firewall
 
 I have a dual WAN/two ISP setup.  I do not do ECMP.  
